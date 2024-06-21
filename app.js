@@ -24,7 +24,7 @@ app.use(cors(corsConfig));
 app.use(express.json());
 
 //router middelware 
-app.use('/',async (req,res)=>{
+app.get('/',async (req,res)=>{
     return res.send('On site');
 });
 app.use('/user',userRouter);

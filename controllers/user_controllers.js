@@ -35,7 +35,6 @@ async function user_login(req,res)
 
         const user = await userModel.findOne({adharnumber:body_payload.adharnumber});
 
-
         if(!user)
         {
             res.status(401).json({

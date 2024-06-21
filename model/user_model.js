@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
-const { throwDeprecation } = require('process');
 
 //user schema
 const userSchema = mongoose.Schema({
@@ -45,40 +44,40 @@ const userSchema = mongoose.Schema({
 });
 
 
-//password hashing
-userSchema.pre('save',async function(next){
-    try
-    {
-        const salt = await bcrypt.genSalt(10);
-        const hashval = await bcrypt.hash(this.password,salt);
-        this.password = hashval;
-        next();
-    }
-    catch(e)
-    {
-        console.log(e);
-    }
-});
+// //password hashing
+// userSchema.pre('save',async function(next){
+//     try
+//     {
+//         const salt = await bcrypt.genSalt(10);
+//         const hashval = await bcrypt.hash(this.password,salt);
+//         this.password = hashval;
+//         next();
+//     }
+//     catch(e)
+//     {
+//         console.log(e);
+//     }
+// });
 
 
-//password comapre method
-userSchema.methods.comparepwd = function()
-{
-    console.log("method called");
-}
+// //password comapre method
+// userSchema.methods.comparepwd = function()
+// {
+//     console.log("method called");
+// }
 
-userSchema.methods.comparePassword = async function(userpwd)
-{
-    try
-    {
-        const isMatched = await bcrypt.compare(userpwd,this.password);
-        return isMatched;
-    }
-    catch(e)
-    {
-        throw e;
-    }
-}
+// userSchema.methods.comparePassword = async function(userpwd)
+// {
+//     try
+//     {
+//         const isMatched = await bcrypt.compare(userpwd,this.password);
+//         return isMatched;
+//     }
+//     catch(e)
+//     {
+//         throw e;
+//     }
+// }
 
 //user model
 const userModel = mongoose.model('user',userSchema);
