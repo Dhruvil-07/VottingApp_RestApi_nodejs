@@ -13,7 +13,12 @@ const userRouter = require('./routes/user_route');
 const candidateRoute = require('./routes/candidate_route');
 const voteRoute = require('./routes/voting_route');
 
-app.use(cors());
+const corsConfig = {
+    origin : "*",
+    Credential : true,
+    mmethods : ["GET","POST","PUT","PATCH","DELETE"],
+};
+app.use(cors(corsConfig));
 
 //middelware
 app.use(express.json());
