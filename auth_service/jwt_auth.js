@@ -3,8 +3,16 @@ const jwt = require('jsonwebtoken');
 //gen token
 async function gen_token(playload)
 {
-    const token = await jwt.sign(playload,"shah@123");
-    return token;
+    try
+    {
+        const token = await jwt.sign(playload,"shah@123");
+        return token;
+    }
+    catch(e)
+    {
+        console.log(e);
+    }
+    
 }
 
 //verfiy token
